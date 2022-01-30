@@ -7,21 +7,9 @@ public class TimeStonePickup : MonoBehaviour
 {
     public GameObject dimensionScript;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        //dimensionScript.GetComponent<>();
+        dimensionScript.SetActive(true);
         GameObject.FindGameObjectWithTag("Captions").GetComponent<TextMeshProUGUI>().text = "Woah, what was that? What if I try to touch it? [R]";
         this.gameObject.SetActive(false);
     }
