@@ -7,6 +7,8 @@ TagManager:
   - FxTemporaire
   - Grabbable
   - Captions
+  - MWorld
+  - NWorld
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
 
 public class UniverseHandler : MonoBehaviour
 {
@@ -8,9 +10,14 @@ public class UniverseHandler : MonoBehaviour
     public GameObject[] MWorldObjects;
     public GameObject[] NWorldObjects;
 
+    PostProcessVolume vol;
+    ColorGrading colorGrade;
+
     bool isNormal = true;
     void Start()
     {
+        vol = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessVolume>();
+        colorGrade = vol.profile.GetSetting<ColorGrading>();
         Invoke("CountObjects", 2.0f);
         
     }
@@ -39,6 +46,7 @@ public class UniverseHandler : MonoBehaviour
         } 
     }
     public void SwitchToMirror(){
+        colorGrade.saturation.value = -100;
         foreach (GameObject item in NWorldObjects)
         {
             item.SetActive(false);
@@ -49,6 +57,7 @@ public class UniverseHandler : MonoBehaviour
         isNormal = false;
     }
     public void SwitchToNormal(){
+        colorGrade.saturation.value = 0;
         foreach (GameObject item in NWorldObjects)
         {
             item.SetActive(true);
