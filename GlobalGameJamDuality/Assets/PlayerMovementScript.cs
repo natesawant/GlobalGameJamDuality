@@ -7,6 +7,8 @@ public class PlayerMovementScript : MonoBehaviour
     public float maxWalkSpeed, walkAcceleration, maxSprintSpeed, sprintAcceleration, airDrag, jumpForce, jumpCooldown, jumpCurr, groundRadius;
     public GameObject groundCheck;
     public LayerMask groundLayer;
+    GameObject model;
+    Animator anim;
 
     public UniverseHandler uH;
     Rigidbody rb;
@@ -14,6 +16,8 @@ public class PlayerMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        model = GameObject.Find("characterMedium");
+        anim = model.GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -27,6 +31,22 @@ public class PlayerMovementScript : MonoBehaviour
 
     void WalkAndSprint()
     {
+        // check which direction to face
+        if (rb.velocity.x >= 1f) {
+            model.transform.localRotation = Quaternion.Euler(0, 90, 0);
+        }
+        else if (rb.velocity.x <= -1f) {
+            model.transform.localRotation = Quaternion.Euler(0, -90, 0);
+        }
+
+        // check if moving animation or not
+        if (Mathf.Abs(rb.velocity.x) >= 0.2f) {
+            anim.SetBool("Run", true);
+        }
+        else {
+            anim.SetBool("Run", false);
+        }
+
         // Airdrag
         if (!isGrounded())
         {
@@ -53,9 +73,14 @@ public class PlayerMovementScript : MonoBehaviour
 
     void Jump()
     {
+        if (isGrounded() && jumpCurr >= jumpCooldown) {
+            anim.SetBool("Jump", false);
+        }
+
         jumpCurr += Time.deltaTime;
         if (Input.GetAxisRaw("Jump") == 1 && isGrounded() && jumpCurr >= jumpCooldown)
         {
+            anim.SetBool("Jump", true);
             rb.velocity = new Vector3(rb.velocity.x, 0, 0);
             Debug.Log("Attempting to jump...");
             rb.AddForce(transform.up * jumpForce);
