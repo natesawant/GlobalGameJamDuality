@@ -19,7 +19,7 @@ public class UniverseHandler : MonoBehaviour
         vol = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessVolume>();
         colorGrade = vol.profile.GetSetting<ColorGrading>();
         Invoke("CountObjects", 2.0f);
-        
+        Refresh();
     }
 
     public void CountObjects(){
