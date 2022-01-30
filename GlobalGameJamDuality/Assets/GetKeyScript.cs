@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class LadderScript : MonoBehaviour
+public class GetKeyScript : MonoBehaviour
 {
-    public GameObject otherPoint;
-    bool isAxisInUse;
 
+    bool isAxisInUse;
+    public GameObject door;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +22,12 @@ public class LadderScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-
-
         if (Input.GetAxisRaw("Interact") == 1)
         {
             if (isAxisInUse == false)
             {
-                other.transform.position = otherPoint.transform.position;
+                door.GetComponent<DoorScript>().hasKey = true;
+                GameObject.FindGameObjectWithTag("Captions").GetComponent<TextMeshProUGUI>().text = "This rusty key might work...";
                 isAxisInUse = true;
             }
         }
@@ -36,17 +35,5 @@ public class LadderScript : MonoBehaviour
         {
             isAxisInUse = false;
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        GameObject.FindGameObjectWithTag("Captions").GetComponent<TextMeshProUGUI>().text = "I might be able to use the ladder... [F]";
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-
-        GameObject.FindGameObjectWithTag("Captions").GetComponent<TextMeshProUGUI>().text = "";
-
     }
 }
