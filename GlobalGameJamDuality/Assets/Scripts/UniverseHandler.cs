@@ -12,7 +12,7 @@ public class UniverseHandler : MonoBehaviour
     void Start()
     {
         Invoke("CountObjects", 2.0f);
-        
+        Refresh();
     }
 
     public void CountObjects(){
