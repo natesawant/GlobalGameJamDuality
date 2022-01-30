@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - NWorld
-  - MWorld
-  - Both
+  - FxTemporaire
+  - Grabbable
+  - Captions
   layers:
   - Default
   - TransparentFX
