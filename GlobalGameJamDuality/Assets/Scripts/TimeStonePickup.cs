@@ -21,8 +21,8 @@ public class TimeStonePickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //dimensionScript.GetComponent<>();
-        GameObject.FindGameObjectWithTag("Captions").GetComponent<TextMeshProUGUI>().text = "Woah, what was that? What if I try to touch it? [R]";
+        dimensionScript.SetActive(true);
+        GameObject.FindGameObjectWithTag("Captions").GetComponent<TextMeshProUGUI>().text = "Woah, what was that? What if I try to touch it? [H]";
         this.gameObject.SetActive(false);
     }
 }
