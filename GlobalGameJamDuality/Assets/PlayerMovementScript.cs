@@ -7,6 +7,8 @@ public class PlayerMovementScript : MonoBehaviour
     public float maxWalkSpeed, walkAcceleration, maxSprintSpeed, sprintAcceleration, airDrag, jumpForce, jumpCooldown, jumpCurr, groundRadius;
     public GameObject groundCheck;
     public LayerMask groundLayer;
+
+    public UniverseHandler uH;
     Rigidbody rb;
 
     // Start is called before the first frame update
@@ -20,6 +22,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         WalkAndSprint();
         Jump();
+        SwitchUniverse();
     }
 
     void WalkAndSprint()
@@ -59,7 +62,11 @@ public class PlayerMovementScript : MonoBehaviour
             jumpCurr = 0;
         }
     }
-
+     void SwitchUniverse(){
+         if (Input.GetKeyDown(KeyCode.H)){
+            uH.Switch();
+         }
+     }
     bool isGrounded()
     {
         return Physics.CheckSphere(groundCheck.transform.position, groundRadius, groundLayer);
