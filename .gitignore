@@ -40,3 +40,4 @@ sysinfo.txt
 *.unitypackage
 GlobalGameJamDuality/Logs/AssetImportWorker0.log
 *.meta
+*.log
