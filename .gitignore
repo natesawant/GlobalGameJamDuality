@@ -37,3 +37,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+GlobalGameJamDuality/Logs/AssetImportWorker0.log
+*.meta
