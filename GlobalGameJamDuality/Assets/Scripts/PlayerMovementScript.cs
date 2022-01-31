@@ -8,7 +8,7 @@ public class PlayerMovementScript : MonoBehaviour
     public GameObject groundCheck;
     public LayerMask groundLayer;
     GameObject model;
-    Animator anim;
+    public Animator anim;
 
     public UniverseHandler uH;
     Rigidbody rb;
@@ -17,7 +17,7 @@ public class PlayerMovementScript : MonoBehaviour
     void Start()
     {
         model = GameObject.Find("characterMedium");
-        anim = model.GetComponent<Animator>();
+        //anim = model.GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
